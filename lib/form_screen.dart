@@ -184,9 +184,9 @@ class FormScreenState extends State<FormScreen> {
                         ),
                       ),
                       onPressed: () async {
-                        // int? _delid = int?._delidController.text;
-                        // int? i = await DatabaseHelper.instance.delete(_delid);
-                        // print('Rows effected: $i');
+                        int? _delid = int?.parse(_delidController.text);
+                        int? i = await DatabaseHelper.instance.delete(_delid);
+                        print('Rows effected: $i');
                       },
                   ),
                   ElevatedButton(
