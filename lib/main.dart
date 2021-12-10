@@ -25,3 +25,4 @@ class MyApp extends StatelessWidget {
 // TODO: clear all fields after entering data
 // TODO: handle errors for delete record and show message
 // TODO: handle errors for various other fields
+// TODO: display records in a table
