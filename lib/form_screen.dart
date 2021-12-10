@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/database_helper.dart';
-import 'package:simple_flutter_app/test.dart';
+import 'package:simple_flutter_app/display_screen.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key}) : super(key: key);
@@ -222,7 +222,7 @@ class FormScreenState extends State<FormScreen> {
                         List<Map<String, dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SecondRoute(queryRows : queryRows)),
+                          MaterialPageRoute(builder: (context) => DisplayScreen(queryRows : queryRows)),
                         );
                       },
                   ),

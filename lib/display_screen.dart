@@ -1,26 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/records.dart';
 
-class SecondRoute extends StatefulWidget {
+class DisplayScreen extends StatefulWidget {
 
   final List<Map<String, dynamic>>? queryRows;
 
-  const SecondRoute({Key? key, this.queryRows}) : super(key: key);
+  const DisplayScreen({Key? key, required this.queryRows}) : super(key: key);
 
   @override
-  State<SecondRoute> createState() => _SecondRouteState(queryRows);
+  State<DisplayScreen> createState() => _DisplayScreenState();
 }
 
-class _SecondRouteState extends State<SecondRoute> {
-
-  List<Map<String, dynamic>>? queryRows;
-  _SecondRouteState(this.queryRows);
+class _DisplayScreenState extends State<DisplayScreen> {
 
   final List<Records> _records = [];
 
   void _queryAll() async {
     _records.clear();
-    queryRows?.forEach((row) => _records.add(Records.fromMap(row)));
+    widget.queryRows?.forEach((row) => _records.add(Records.fromMap(row)));
     setState(() {});
   }
 

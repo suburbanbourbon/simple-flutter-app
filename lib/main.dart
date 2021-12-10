@@ -1,10 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/form_screen.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const FirstApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class FirstApp extends StatelessWidget {
+  const FirstApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +15,42 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: const FormScreen(),
+      home: const HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 3),
+          ()=>Navigator.pushReplacement(context, 
+                                        MaterialPageRoute(builder:
+                                                          (context) => 
+                                                           const FormScreen()
+                                                         )
+                                       )
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      child:FlutterLogo(size:MediaQuery.of(context).size.height)
     );
   }
 }
 
 // TODO: put all widgets in one file
-// TODO: display message at the bottom after a certain operation
-// TODO: use unused variables
-// TODO: clear all fields after entering data
+// TODO: use unused variables to display message at the bottom after a certain operation
 // TODO: handle errors for delete record and show message
 // TODO: handle errors for various other fields
 // TODO: display records in a table
+// TODO: display message when there are no records to display
