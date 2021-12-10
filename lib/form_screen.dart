@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/database_helper.dart';
+import 'package:simple_flutter_app/test.dart';
 
 class FormScreen extends StatefulWidget {
+  const FormScreen({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() {
     return FormScreenState();
@@ -13,13 +16,18 @@ class FormScreenState extends State<FormScreen> {
   String? _email;
   String? _address;
   String? _phoneNumber;
-  TextEditingController _delidController = TextEditingController();
+  final TextEditingController _delidController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _addressController = TextEditingController();
+  final TextEditingController _phoneController = TextEditingController();
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(
+      controller: _nameController,
+      decoration: const InputDecoration(
         labelText: 'Name',
         border: OutlineInputBorder(),
       ),
@@ -32,13 +40,17 @@ class FormScreenState extends State<FormScreen> {
       },
       onSaved: (String? value) {
         _name = value!;
+        setState(() {
+          _nameController.clear();
+        });
       },
     );
   }
 
   Widget _buildEmail() {
     return TextFormField(
-      decoration: InputDecoration(
+      controller: _emailController,
+      decoration: const InputDecoration(
         labelText: 'Email',
         border: OutlineInputBorder(),
       ),
@@ -58,13 +70,17 @@ class FormScreenState extends State<FormScreen> {
       },
       onSaved: (String? value) {
         _email = value!;
+        setState(() {
+          _emailController.clear();
+        });
       },
     );
   }
 
   Widget _buildAdd() {
     return TextFormField(
-      decoration: InputDecoration(
+      controller: _addressController,
+      decoration: const InputDecoration(
         labelText: 'Address',
         border: OutlineInputBorder(),
       ),
@@ -78,13 +94,17 @@ class FormScreenState extends State<FormScreen> {
       },
       onSaved: (String? value) {
         _address = value!;
+        setState(() {
+          _addressController.clear();
+        });
       },
     );
   }
 
   Widget _buildPhoneNumber() {
     return TextFormField(
-      decoration: InputDecoration(
+      controller: _phoneController,
+      decoration: const InputDecoration(
         labelText: 'Phone number',
         border: OutlineInputBorder(),
       ),
@@ -101,6 +121,9 @@ class FormScreenState extends State<FormScreen> {
       },
       onSaved: (String? value) {
         _phoneNumber = value!;
+        setState(() {
+          _phoneController.clear();
+        });
       },
     );
   }
@@ -108,7 +131,7 @@ class FormScreenState extends State<FormScreen> {
   Widget _buildDeleteRecord() {
     return TextFormField(
       controller: _delidController,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         labelText: 'Row id',
         border: OutlineInputBorder(),
       ),
@@ -119,27 +142,27 @@ class FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("User Form")),
+      appBar: AppBar(title: const Text("User Form")),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     _buildName(),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     _buildEmail(),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     _buildAdd(),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     _buildPhoneNumber(),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         'Submit',
                         style: TextStyle(
                           color: Colors.white, 
@@ -159,8 +182,6 @@ class FormScreenState extends State<FormScreen> {
                           DatabaseHelper.columnAddress : _address,
                           DatabaseHelper.columnPhone : _phoneNumber,
                         });
-
-                        print('The inserted id is $i');
                       },
                     ),
                   ],
@@ -168,15 +189,15 @@ class FormScreenState extends State<FormScreen> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(height: 1),
+                  const SizedBox(height: 1),
                   _buildDeleteRecord(),
-                  SizedBox(height: 1),
+                  const SizedBox(height: 1),
                   ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         'Delete',
                         style: TextStyle(
                           color: Colors.white, 
@@ -186,11 +207,11 @@ class FormScreenState extends State<FormScreen> {
                       onPressed: () async {
                         int? _delid = int?.parse(_delidController.text);
                         int? i = await DatabaseHelper.instance.delete(_delid);
-                        print('Rows effected: $i');
+                        _delidController.clear();
                       },
                   ),
                   ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         'Display',
                         style: TextStyle(
                           color: Colors.white, 
@@ -199,11 +220,14 @@ class FormScreenState extends State<FormScreen> {
                       ),
                       onPressed: () async {
                         List<Map<String, dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
-                        print(queryRows);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SecondRoute(queryRows : queryRows)),
+                        );
                       },
                   ),
                   ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         'Delete DB',
                         style: TextStyle(
                           color: Colors.white, 
@@ -212,7 +236,6 @@ class FormScreenState extends State<FormScreen> {
                       ),
                       onPressed: () async {
                         bool value = await DatabaseHelper.instance.deleteDb();
-                        print(value);
                       },
                   ),
                 ],
@@ -224,3 +247,4 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 }
+

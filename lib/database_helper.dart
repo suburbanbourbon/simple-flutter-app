@@ -4,15 +4,15 @@ import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
 class DatabaseHelper {
-  static final _dbName = 'myDB.db';
-  static final _dbVersion = 1;
-  static final _tableName = 'myTable';
+  static const _dbName = 'myDB.db';
+  static const _dbVersion = 1;
+  static const _tableName = 'myTable';
   
-  static final columnId = '_id';
-  static final columnName = 'name';
-  static final columnEmail = 'email';
-  static final columnAddress = 'address';
-  static final columnPhone = 'phone';
+  static const columnId = '_id';
+  static const columnName = 'name';
+  static const columnEmail = 'email';
+  static const columnAddress = 'address';
+  static const columnPhone = 'phone';
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -74,9 +74,9 @@ class DatabaseHelper {
         databaseDeleted = false;
       });
     } on DatabaseException catch (error) {
-      print(error);
+      //print(error);
     } catch (error) {
-      print(error);
+      //print(error);
     }
 
     return databaseDeleted;
