@@ -226,18 +226,18 @@ class FormScreenState extends State<FormScreen> {
                         );
                       },
                   ),
-                  ElevatedButton(
-                      child: const Text(
-                        'Delete DB',
-                        style: TextStyle(
-                          color: Colors.white, 
-                          fontSize: 16
-                        ),
-                      ),
-                      onPressed: () async {
-                        bool value = await DatabaseHelper.instance.deleteDb();
-                      },
-                  ),
+                  // ElevatedButton(
+                  //     child: const Text(
+                  //       'Delete DB',
+                  //       style: TextStyle(
+                  //         color: Colors.white, 
+                  //         fontSize: 16
+                  //       ),
+                  //     ),
+                  //     onPressed: () async {
+                  //       bool value = await DatabaseHelper.instance.deleteDb();
+                  //     },
+                  // ),
                 ],
               ),
             )

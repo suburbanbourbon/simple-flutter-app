@@ -25,7 +25,7 @@ class _DisplayScreenState extends State<DisplayScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Second Route"),
+        title: const Text("Display Records"),
       ),
 
       body: SingleChildScrollView(

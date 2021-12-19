@@ -48,9 +48,10 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: put all widgets in one file
+// TODO: if possible put all widgets in file form_screen.dart from line 27 to 140 in a separate file
 // TODO: use unused variables to display message at the bottom after a certain operation
 // TODO: handle errors for delete record and show message
 // TODO: handle errors for various other fields
 // TODO: display records in a table
 // TODO: display message when there are no records to display
+// TODO: find any descrepencies and correct them (eg strings, filename, variable name, etc.)
