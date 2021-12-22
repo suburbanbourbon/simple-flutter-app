@@ -19,4 +19,4 @@ Flutter app to create, display, delete a record in SQL database.
 ------------
 
 ### Delete Record
-![](https://github.com/suburbanbourbon/simple-flutter-app/blob/master/app-screenshots/display%20screen%20with%20details.png?raw=true)&nbsp;&nbsp;&nbsp;&nbsp![](https://github.com/suburbanbourbon/simple-flutter-app/blob/master/app-screenshots/delete%20record%20form%20screen.png?raw=true)&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/suburbanbourbon/simple-flutter-app/blob/master/app-screenshots/delete%20record%202.png?raw=true)
+![](https://github.com/suburbanbourbon/simple-flutter-app/blob/master/app-screenshots/display%20screen%20with%20details.png?raw=true)&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/suburbanbourbon/simple-flutter-app/blob/master/app-screenshots/delete%20record%20form%20screen.png?raw=true)&nbsp;&nbsp;&nbsp;&nbsp;![](https://github.com/suburbanbourbon/simple-flutter-app/blob/master/app-screenshots/delete%20record%202.png?raw=true)
