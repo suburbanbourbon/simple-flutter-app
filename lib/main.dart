@@ -66,3 +66,4 @@ class _HomePageState extends State<HomePage> {
 // TODO: remember theme state using shared_preferences
 // TODO: add a better splash screen
 // TODO: singlescrollview bugs out at times for Row ID
+// TODO: add comments explaining the code
