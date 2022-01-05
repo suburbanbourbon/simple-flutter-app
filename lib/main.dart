@@ -16,7 +16,6 @@ class FirstApp extends StatelessWidget {
         valueListenable: themeNotifier,
         builder: (_, ThemeMode currentMode, __) {
           return MaterialApp(
-            // color: Colors.purple,
             debugShowCheckedModeBanner: false,
             title: 'Simple Flutter App',
             theme: ThemeData(
@@ -25,6 +24,7 @@ class FirstApp extends StatelessWidget {
             darkTheme: ThemeData(
                 primarySwatch: Colors.purple, brightness: Brightness.dark),
             themeMode: currentMode,
+            // ignore: prefer_const_constructors
             home: HomePage(),
           );
         });
@@ -45,6 +45,7 @@ class _HomePageState extends State<HomePage> {
     Timer(
         const Duration(seconds: 3),
         () => Navigator.pushReplacement(
+            // ignore: prefer_const_constructors
             context, MaterialPageRoute(builder: (context) => FormScreen())));
   }
 
@@ -61,5 +62,7 @@ class _HomePageState extends State<HomePage> {
 // TODO: handle errors for various other fields
 // TODO: display records in a table
 // TODO: display message when there are no records to display
-// TODO: find any descrepencies and correct them (eg strings, filename, variable name, etc.)
+// TODO: find any descrepencies and correct them (eg strings, filename, variable name, capitalization, etc.)
 // TODO: remember theme state using shared_preferences
+// TODO: add a better splash screen
+// TODO: singlescrollview bugs out at times for Row ID

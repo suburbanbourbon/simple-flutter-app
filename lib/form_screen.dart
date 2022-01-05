@@ -85,7 +85,6 @@ class FormScreenState extends State<FormScreen> {
         labelText: 'Address',
         border: OutlineInputBorder(),
       ),
-      keyboardType: TextInputType.text,
       validator: (String? value) {
         if (value!.isEmpty) {
           return 'Address is Required';
@@ -133,7 +132,7 @@ class FormScreenState extends State<FormScreen> {
     return TextFormField(
       controller: _delidController,
       decoration: const InputDecoration(
-        labelText: 'Row id',
+        labelText: 'Row ID',
         border: OutlineInputBorder(),
       ),
       keyboardType: TextInputType.number,
@@ -223,6 +222,7 @@ class FormScreenState extends State<FormScreen> {
                       _delidController.clear();
                     },
                   ),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                     child: const Text(
                       'Display',
