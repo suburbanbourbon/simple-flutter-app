@@ -5,18 +5,29 @@ import 'package:simple_flutter_app/form_screen.dart';
 void main() => runApp(const FirstApp());
 
 class FirstApp extends StatelessWidget {
+  static final ValueNotifier<ThemeMode> themeNotifier =
+      ValueNotifier(ThemeMode.system);
+
   const FirstApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Simple Flutter App',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: const HomePage(),
-    );
+    return ValueListenableBuilder<ThemeMode>(
+        valueListenable: themeNotifier,
+        builder: (_, ThemeMode currentMode, __) {
+          return MaterialApp(
+            // color: Colors.purple,
+            debugShowCheckedModeBanner: false,
+            title: 'Simple Flutter App',
+            theme: ThemeData(
+              primarySwatch: Colors.purple,
+            ),
+            darkTheme: ThemeData(
+                primarySwatch: Colors.purple, brightness: Brightness.dark),
+            themeMode: currentMode,
+            home: HomePage(),
+          );
+        });
   }
 }
 
@@ -33,8 +44,8 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     Timer(
         const Duration(seconds: 3),
-        () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const FormScreen())));
+        () => Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => FormScreen())));
   }
 
   @override
@@ -45,10 +56,10 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-// TODO: if possible put all widgets in file form_screen.dart from line 27 to 140 in a separate file
 // TODO: use unused variables to display message at the bottom after a certain operation
 // TODO: handle errors for delete record and show message
 // TODO: handle errors for various other fields
 // TODO: display records in a table
 // TODO: display message when there are no records to display
 // TODO: find any descrepencies and correct them (eg strings, filename, variable name, etc.)
+// TODO: remember theme state using shared_preferences

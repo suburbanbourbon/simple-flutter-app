@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:simple_flutter_app/database_helper.dart';
 import 'package:simple_flutter_app/display_screen.dart';
+import 'package:simple_flutter_app/main.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({Key? key}) : super(key: key);
@@ -141,8 +142,26 @@ class FormScreenState extends State<FormScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData mode = Theme.of(context);
+    var whichMode = mode.brightness;
+  
     return Scaffold(
-      appBar: AppBar(title: const Text("User Form")),
+      appBar: AppBar(
+        backgroundColor: Colors.purple,
+        title: const Text("User Form"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                FirstApp.themeNotifier.value =
+                    whichMode == Brightness.light
+                        ? ThemeMode.dark
+                        : ThemeMode.light;
+              },
+              icon: Icon(whichMode == Brightness.light
+                  ? Icons.dark_mode
+                  : Icons.light_mode))
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
