@@ -4,7 +4,7 @@ class Records {
   String? email;
   String? address;
   String? phone;
- 
+
   Records.fromMap(Map<String, dynamic> map) {
     id = map['_id'];
     name = map['name'];

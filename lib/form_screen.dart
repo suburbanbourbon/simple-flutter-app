@@ -61,8 +61,8 @@ class FormScreenState extends State<FormScreen> {
         }
 
         if (!RegExp(
-                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"
-              ).hasMatch(value)) {
+                r"[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?")
+            .hasMatch(value)) {
           return 'Please enter a valid email Address';
         }
 
@@ -164,10 +164,7 @@ class FormScreenState extends State<FormScreen> {
                     ElevatedButton(
                       child: const Text(
                         'Submit',
-                        style: TextStyle(
-                          color: Colors.white, 
-                          fontSize: 16
-                        ),
+                        style: TextStyle(color: Colors.white, fontSize: 16),
                       ),
                       onPressed: () async {
                         if (!_formKey.currentState!.validate()) {
@@ -177,10 +174,10 @@ class FormScreenState extends State<FormScreen> {
                         _formKey.currentState!.save();
 
                         int? i = await DatabaseHelper.instance.insert({
-                          DatabaseHelper.columnName : _name,
-                          DatabaseHelper.columnEmail : _email,
-                          DatabaseHelper.columnAddress : _address,
-                          DatabaseHelper.columnPhone : _phoneNumber,
+                          DatabaseHelper.columnName: _name,
+                          DatabaseHelper.columnEmail: _email,
+                          DatabaseHelper.columnAddress: _address,
+                          DatabaseHelper.columnPhone: _phoneNumber,
                         });
                       },
                     ),
@@ -197,40 +194,37 @@ class FormScreenState extends State<FormScreen> {
                   _buildDeleteRecord(),
                   const SizedBox(height: 1),
                   ElevatedButton(
-                      child: const Text(
-                        'Delete',
-                        style: TextStyle(
-                          color: Colors.white, 
-                          fontSize: 16
-                        ),
-                      ),
-                      onPressed: () async {
-                        int? _delid = int?.parse(_delidController.text);
-                        int? i = await DatabaseHelper.instance.delete(_delid);
-                        _delidController.clear();
-                      },
+                    child: const Text(
+                      'Delete',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    onPressed: () async {
+                      int? _delid = int?.parse(_delidController.text);
+                      int? i = await DatabaseHelper.instance.delete(_delid);
+                      _delidController.clear();
+                    },
                   ),
                   ElevatedButton(
-                      child: const Text(
-                        'Display',
-                        style: TextStyle(
-                          color: Colors.white, 
-                          fontSize: 16
-                        ),
-                      ),
-                      onPressed: () async {
-                        List<Map<String, dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => DisplayScreen(queryRows : queryRows)),
-                        );
-                      },
+                    child: const Text(
+                      'Display',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                    onPressed: () async {
+                      List<Map<String, dynamic>> queryRows =
+                          await DatabaseHelper.instance.queryAll();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DisplayScreen(queryRows: queryRows)),
+                      );
+                    },
                   ),
                   // ElevatedButton(
                   //     child: const Text(
                   //       'Delete DB',
                   //       style: TextStyle(
-                  //         color: Colors.white, 
+                  //         color: Colors.white,
                   //         fontSize: 16
                   //       ),
                   //     ),
@@ -247,4 +241,3 @@ class FormScreenState extends State<FormScreen> {
     );
   }
 }
-

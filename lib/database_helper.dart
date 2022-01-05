@@ -7,7 +7,7 @@ class DatabaseHelper {
   static const _dbName = 'myDB.db';
   static const _dbVersion = 1;
   static const _tableName = 'myTable';
-  
+
   static const columnId = '_id';
   static const columnName = 'name';
   static const columnEmail = 'email';
@@ -28,23 +28,18 @@ class DatabaseHelper {
   _initiateDatabase() async {
     Directory directory = await getApplicationDocumentsDirectory();
     String path = join(directory.path, _dbName);
-    return await openDatabase(
-      path, 
-      version: _dbVersion, 
-      onCreate: _onCreate);
+    return await openDatabase(path, version: _dbVersion, onCreate: _onCreate);
   }
 
   Future? _onCreate(Database db, int version) {
-    db.execute(
-      '''
+    db.execute('''
       CREATE TABLE $_tableName ( 
       $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
       $columnName TEXT NOT NULL,
       $columnEmail TEXT NOT NULL,
       $columnAddress TEXT NOT NULL,
       $columnPhone TEXT NOT NULL )
-      '''
-    );
+      ''');
   }
 
   Future<int?> insert(Map<String, dynamic> row) async {
@@ -81,5 +76,4 @@ class DatabaseHelper {
 
     return databaseDeleted;
   }
-
 }
