@@ -67,3 +67,4 @@ class _HomePageState extends State<HomePage> {
 // TODO: add a better splash screen
 // TODO: singlescrollview bugs out at times for Row ID
 // TODO: add comments explaining the code
+// TODO: change app name and icon everywhere
